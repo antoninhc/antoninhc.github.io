@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+                // fontSize: {
+                //     // 'xs' :  ['0.75 rem', {
+                //     //     lineHeight: '1rem', 
+                //     // }],
+                //     // 'base': ['0.8', {
+                //     //     lineHeight: '1.15rem', 
+                //     // }],
+                // }
+            }
+          }
+        }
+      </script>    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div class="bg-white overflow-hidden text-sm" id="app">
+        <h1>HELLO</h1>
+    </div>
+</body>
+
+<script>
+    const { createApp } = Vue
+  
+    createApp({
+      data() {
+        return {
+        
+        }
+      }
+    }).mount('#app')
+  </script>
+  
+
+  
+</html>

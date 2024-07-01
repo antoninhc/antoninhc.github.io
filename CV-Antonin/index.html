@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .a4 {
+            width: 21.1cm;
+            height: 29.7cm;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* border: 1px solid #ccc; */
+            position: relative;
+        }
+
+        .dimensions {
+            position: absolute;
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .width {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .height {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+                fontSize: {
+                    // 'xs' :  ['0.75 rem', {
+                    //     lineHeight: '1rem', 
+                    // }],
+                    // 'base': ['0.8', {
+                    //     lineHeight: '1.15rem', 
+                    // }],
+                    'xl': ['1.15rem', {
+                        lineHeight: '1.75rem', 
+                    }],
+                    // '3xl': ['1.875rem', {
+                    //     lineHeight: '2.25rem',
+                    //     letterSpacing: '-0.02em',
+                    //     fontWeight: '700',
+                    // }],
+                }
+            }
+          }
+        }
+      </script>    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div class="a4 bg-white overflow-hidden text-sm" id="app">
+        <div class="flex h-full">
+            <!-- Sidebar -->
+            <div class="w-1/3 bg-gray-800 text-white p-6">
+                <div class="text-center">
+                    <img :src="infos.photo" alt="Profile Picture"
+                        class="w-36 h-36 mx-auto rounded-full mb-4">
+                    <h1 class="text-xl font-bold">{{ infos.fullName }}</h1>
+                    <p class="text-gray-400">{{ infos.job_title }}</p>
+                </div>
+                <div class="mt-5">
+                    <h2 class="text-lg font-bold">Contact</h2>
+                    <ul class="mt-1 text-gray-400">
+                        <li class="flex items-center my-2">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25" />
+                                  </svg>                                  
+                            </div>
+                            <span class="px-2">{{ infos.email }}</span>
+                        </li>
+                        <li class="flex items-center my-2">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                                  </svg>                                  
+                            </div>
+                            <span class="px-2">{{ infos.phone }}</span>
+                        </li>
+                        <li class="flex items-center my-2">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m20.893 13.393-1.135-1.135a2.252 2.252 0 0 1-.421-.585l-1.08-2.16a.414.414 0 0 0-.663-.107.827.827 0 0 1-.812.21l-1.273-.363a.89.89 0 0 0-.738 1.595l.587.39c.59.395.674 1.23.172 1.732l-.2.2c-.212.212-.33.498-.33.796v.41c0 .409-.11.809-.32 1.158l-1.315 2.191a2.11 2.11 0 0 1-1.81 1.025 1.055 1.055 0 0 1-1.055-1.055v-1.172c0-.92-.56-1.747-1.414-2.089l-.655-.261a2.25 2.25 0 0 1-1.383-2.46l.007-.042a2.25 2.25 0 0 1 .29-.787l.09-.15a2.25 2.25 0 0 1 2.37-1.048l1.178.236a1.125 1.125 0 0 0 1.302-.795l.208-.73a1.125 1.125 0 0 0-.578-1.315l-.665-.332-.091.091a2.25 2.25 0 0 1-1.591.659h-.18c-.249 0-.487.1-.662.274a.931.931 0 0 1-1.458-1.137l1.411-2.353a2.25 2.25 0 0 0 .286-.76m11.928 9.869A9 9 0 0 0 8.965 3.525m11.928 9.868A9 9 0 1 1 8.965 3.525" />
+                                  </svg>
+                                  
+                            </div>
+                            <span class="px-2">{{ infos.address }}</span>
+                        </li>
+                        <li class="flex items-center my-2">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75-1.5.75a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0L3 16.5m15-3.379a48.474 48.474 0 0 0-6-.371c-2.032 0-4.034.126-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 0 1 3 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 0 1 6 13.12M12.265 3.11a.375.375 0 1 1-.53 0L12 2.845l.265.265Zm-3 0a.375.375 0 1 1-.53 0L9 2.845l.265.265Zm6 0a.375.375 0 1 1-.53 0L15 2.845l.265.265Z" />
+                                  </svg>
+                            </div>
+                            <span class="px-2">{{ infos.age }}</span>
+                        </li>
+                        <li class="flex items-center my-2">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802" />
+                                  </svg>
+                            </div>
+                            <span class="px-2">{{ infos.langues }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mt-5">
+                    <h2 class="text-lg font-bold">Hard Skills</h2>
+                    <ul class="mt-1 text-gray-400">
+                      <li class="my-1" v-for="(skill_cat, skill_title) in skills">
+                        {{ skill_title }} <br/>
+                        <span v-for="skill in skill_cat.list" :class="'inline-flex items-center rounded-md bg-gray-100 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 ml-0.5 mb-0.5'">
+                            {{ skill }}
+                        </span>
+                    </li>   
+                    </ul>
+                </div>
+                <div class="mt-5">
+                    <h2 class="text-lg font-bold">Soft Skills</h2>
+                    <ul class="mt-1 text-gray-400">
+                      <li class="my-2" v-for="skill in soft_skills">
+                        {{ skill }}
+                        </li>   
+                    </ul>
+                </div>
+                <!-- <div class="mt-5">
+                    <h2 class="text-lg font-bold">Langues</h2>
+                    <ul class="mt-1 text-gray-400">
+                        <li class="my-2">Français</li>
+                        <li class="my-2">Anglais (B2)</li>
+                    </ul>
+                </div> -->
+            </div>
+
+            <!-- Main Content -->
+            <div class="w-2/3 p-6">
+                <section class="mb-5">
+                    <!-- <h2 class="text-2xl font-bold border-b-2 border-gray-200 pb-1 mb-3">About Me</h2> -->
+                    <p class="text-gray-700 text-xl pt-3"> {{ infos.description }}</p>
+                </section>
+
+                <section class="mb-5">
+                    <h2 class="text-2xl font-bold border-b-2 border-gray-200 pb-1 mb-3">Expériences profesionnelles</h2>
+                    <div v-for="work in works" class="mb-3">
+                        <h3 class="text-lg font-semibold">{{ work.titre }} <a :href="work.company_link"><small class="underline">{{ work.company }}</small></a></h3>
+                        <p class="text-gray-600 font-semibold">{{ work.type }} - <span class="italic font-medium">{{ work.date }}</span></p>
+                        <ul class="list-disc list-inside text-gray-700 mt-2">
+                            <li v-for="detail in work.details">{{detail}}</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section class="mb-5">
+                    <h2 class="text-2xl font-bold border-b-2 border-gray-200 pb-1 mb-3">Projet</h2>
+                    <div v-for="projet in projects" class="mb-3">
+                        <h3 class="text-lg font-semibold">{{ projet.titre }} <small class="text-gray-600">{{ projet.date }}</small></h3>
+                        <div>
+                            <span v-for="tech in projet.techs" class="inline-flex items-center rounded-md bg-gray-800 px-1.5 py-0.5 text-xs font-medium text-gray-100 ring-1 ring-inset ring-gray-500/10 ml-0.5 mb-0.5">
+                                {{ tech }}
+                            </span>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-700 mt-2">
+                            <li v-for="detail in projet.details">{{detail}}</li>
+                        </ul>
+                       
+                    </div>
+                </section>
+
+                <section class="mb-5">
+                    <h2 class="text-2xl font-bold border-b-2 border-gray-200 pb-1 mb-3">Formations</h2>
+                    <div v-for="formation in formations" class="mb-3">
+                        <h3 class="text-lg font-semibold">{{ formation.titre }} <small>{{ formation.sous_titre  }}</small></h3>
+                        <p class="text-gray-600 font-semibold">{{ formation.ecole }}{{ formation.lieu ? ' ' + formation.lieu : '' }} - <span class="italic font-medium">{{ formation.date }}</span></p>
+                    </div>
+                </section>
+
+
+                <!-- <section class="mb-6">
+                    <h2 class="text-2xl font-bold border-b-2 border-gray-200 pb-1 mb-3">References</h2>
+                    <div class="mb-4">
+                        <p class="font-bold">Estelle Darcy</p>
+                        <p class="text-gray-600">Wardlee Inc. / CEO</p>
+                        <p class="text-gray-600">Phone: +123-456-7890</p>
+                        <p class="text-gray-600">hello@reallygreatsite.com</p>
+                    </div>
+                    <div>
+                        <p class="font-bold">Harper Russo</p>
+                        <p class="text-gray-600">Wardlee Inc. / CEO</p>
+                        <p class="text-gray-600">Phone: +123-456-7890</p>
+                        <p class="text-gray-600">hello@reallygreatsite.com</p>
+                    </div>
+                </section> -->
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    const { createApp } = Vue
+  
+    createApp({
+      data() {
+        return {
+          'infos' : {
+            'photo': 'assets/images/1662063057585.jpeg',
+            'age' : Math.abs((new Date(Date.now() - (new Date(2001, 3, 29)).getTime()).getUTCFullYear()) - 1970),
+            'email' : 'frerejacques.a@gmail.com',
+            'phone' : '+336 47 30 15 10',
+            'address' : 'Paris 75014, FRANCE',
+            'fullName' : 'FREREJACQUES Antonin',
+            'job_title' : 'Développeur fullstack',
+            'description' : "Je recherche un CDI à partir de septembre 2024 pour un poste de développeur fullstack",
+            'langues' : 'Français / Anglais (B2)',
+          },
+          'skills' : {
+            'Bases de données' : {
+                'color' : 'blue',
+                'list' : [
+                    'SQL',
+                    'POSTGRESQL',
+                    'MARIADB',
+                ]
+            },
+            'Langages' : {
+                'color' : 'amber',
+                'list' : [
+                    'PHP',
+                    'Python',
+                    'Java',
+                    'Dart',
+                    'Javascript',
+                    'Typescript',
+                ]
+            },
+            'Framework' : {
+                'color' : 'red',
+                'list' : [
+                    'React Native (mobile)',
+                    'Flutter (mobile)',
+                    'React',
+                    'Laravel',
+                    'Flask',
+                    'Django',
+                    'Vue.js',
+                    'Express.js'
+                ]
+            },
+            'Design' : {
+                'color' : 'purple',
+                'list' : [
+                    'figma',
+                    'tailwidcss',
+                    'tamgui',
+                ]
+            },
+            'Autres' : {
+                'color': 'emerald',
+                'list': [
+                    'Gestion de projet',
+                    'Documentation technique',
+                    'Tests unitaires',
+                    'Administration Réseau',
+                    'Git'
+                ]
+            }
+          },
+          'soft_skills' : [
+            'Sens des responsabilités',
+            'Aptitude à faire preuve d\'initiative et de flexibilité',
+            'Intelligence émotionelle',
+            'Capacité à travailler en équipe',
+          ],
+          "formations" : [
+          {
+                'date' : 'sep 2022 - aut 2024',
+                'titre' : 'Master',
+                'sous_titre' : 'Architecte de système d\'information spécialisé en IA',
+                'ecole' : 'Epitech',
+                'lieu' : 'Paris',
+            },
+            {
+                'date' : 'sep 2021 - Aug 2022',
+                'titre' : 'Bachelor',
+                'sous_titre' : 'Architecte logiciels et développeur d\'applications',
+                'ecole' : 'Epitech',
+                'lieu' : 'Paris',
+            },
+            {
+                'date' : 'sep 2019 - jui 2021',
+                'titre' : 'DUT d\'informatique',
+                'sous_titre' : '',
+                'ecole' : 'IUT',
+                'lieu' : 'd\'Orléans',
+            },
+            {
+                'date' : 'sep 2017 - jun 2019',
+                'titre' : 'Baccalauréat Scientifique',
+                'sous_titre' : 'spécialisation ISN',
+                'ecole' : 'Lycée Pierre Larousse',
+                'lieu' : 'Toucy',
+            }
+          ],
+          'works' : [
+            {
+                'date' : 'mar 2022 - jui 2024',
+                'company' : 'Smartloc (Immobilier)',
+                'company_link' : 'https://www.smartloc.fr/',
+                'lieu' : 'Paris',
+                'titre': 'Développeur fullstack',
+                'type': 'alternance',
+                'details' : [
+                    'Développement de fonctionnalité backend/frontend livré en releases',
+                    'Maintenance et analyse des logs',
+                    'Mise en place de tests unitaires ',
+                ]
+            },
+            {
+                'date' : 'sep 2020 - aut 2021',
+                'company' : 'Cocuisinage (Foodtech)',
+                'company_link' : 'https://www.linkedin.com/company/co-cuisinage',
+                'lieu' : 'Orléans',
+                'titre': 'Développeur fullstack',
+                'type': 'alternance',
+                'details' : [
+                    'Développement d\'une application mobile en flutter',
+                    'Développement d\'un dashboard administrateur pour gérer les données',
+                    'Modélisation d\'un système de donnée et back-end Laravel',
+                ]
+            }
+          ],
+          'projects' : [
+             {
+                'date' : '2023-2024',
+                'titre': 'Paper : Platforme de lecture et d\'écriture',
+                'description' : 'Paper est une plateforme en ligne où les utilisateurs peuvent lire et écrire des histoires, permettant aux écrivins de partager leurs texts avec une large communauté.',
+                'techs' : [
+                    'React Native', 'Expo', 'Tamgui', 'Storybook', 'Figma',
+                ],
+                'details' : [
+                    'Réalisation de l\'ensemble des maquettes sur Figma',
+                    'Mise en place d\'un projet React Native structuré et documenté',
+                    'Intégration des maquettes et de l\'API dans le projet React Native',
+                ]
+            },
+            {
+                'date' : '2023',
+                'titre': 'Outils pour la réalisation d\'état des lieux',
+                'description' : 'Formulaire permettant de réaliser un état des lieux numérique, de le signer et de générer des pdfs',
+                'techs' : [
+                    'PHP', 'DomPDF', 'vue.js', 
+                ],
+                'details' : [
+                    'Mise en place d\'une structure de donnée adaptées pour un état des lieux',
+                    'Génération d\'un PDF d\'état des lieux signé',
+                    'Création d\'un formulaire responsive pour réaliser l\'état des lieux',
+                ]
+            },
+          ]
+        }
+      }
+    }).mount('#app')
+  </script>
+  
+
+  
+</html>
